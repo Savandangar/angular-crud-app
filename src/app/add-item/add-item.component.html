@@ -1,0 +1,51 @@
+<div class="card card-container">
+    <div class="card-body">
+        <h5 class="card-title">Contact Form</h5>
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mt-2">
+                <label for="fname">First Name</label>
+                <input type="text" class="form-control" id="fname" formControlName="fName" [ngClass]="{ 'is-invalid': submitted && f['fName'].errors }" [(ngModel)]="fName" placeholder="Enter your first name" required>
+                <div *ngIf="submitted && f['fName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['fName'].errors['required']">First Name is required</div>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="lname">Last Name</label>
+                <input type="text" class="form-control" id="lname" formControlName="lName" [ngClass]="{ 'is-invalid': submitted && f['lName'].errors }" [(ngModel)]="lName" placeholder="Enter your last name"  required>
+                <div *ngIf="submitted && f['lName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['lName'].errors['required']">Last Name is required</div>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" [(ngModel)]="email" placeholder="Enter your email" required>
+                <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                    <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="phoneno">Phone No.</label>
+                <input type="number" class="form-control" id="phoneno" formControlName="phoneno" [ngClass]="{ 'is-invalid': submitted && f['phoneno'].errors }" [(ngModel)]="phoneno" placeholder="Enter your Phone No." required>
+                <div *ngIf="submitted && f['phoneno'].errors" class="invalid-feedback">
+                    <div *ngIf="f['phoneno'].errors['required']">Phone No is required</div>
+                    <div *ngIf="f['phoneno'].errors['pattern']">Phone No. must be of 10 Digits</div>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="desc" rows="4" formControlName="desc" [ngClass]="{ 'is-invalid': submitted && f['desc'].errors }" [(ngModel)]="desc" placeholder="Enter your description" required></textarea>
+                <div *ngIf="submitted && f['desc'].errors" class="invalid-feedback">
+                    <div *ngIf="f['desc'].errors['required']">Description is required</div>
+                    <div *ngIf="f['desc'].errors['minlength']">
+                        Description must be at least of 50 characters
+                    </div>
+                    <div *ngIf="f['desc'].errors['maxlength']">
+                        Description must not exceed 150 characters
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        </form>
+    </div>
+</div>

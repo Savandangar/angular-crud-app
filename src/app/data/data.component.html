@@ -1,0 +1,15 @@
+<app-add-item (addItem)="addItem($event)"></app-add-item>
+<div class="d-flex justify-content-between align-items-center mb-2 mt-5">
+    <h3>All Items</h3>
+    <button class="btn btn-danger btn-sm" (click)="deleteSelectedItems()" [disabled]="selectedIds.size === 0">Delete all {{selectedIds.size === 0 ? '' : '(' + selectedIds.size + ')'}}</button>
+</div>
+<div>
+    <app-data-item 
+        *ngFor="let data of datas" 
+        [data]="data"
+        (delteItemEvent)="deleteItem($event)" 
+        (openModalEvent)="openModal($event)"
+        (setSelectedItemEvent)="setSelectedItems($event)">
+    </app-data-item>
+    <app-edit-item-modal [dataToEdit]="selectedData"></app-edit-item-modal>
+</div>
